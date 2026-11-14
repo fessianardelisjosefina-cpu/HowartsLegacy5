@@ -1,0 +1,283 @@
+/* ANIMAGO – El ritual de transformación · style.css
+   1 Variables y cursores · 2 Base · 3 Atmósfera fija · 4 Cabecera · 5 Portada
+   6 Bloques y manuscritos · 7 Etapas narrativas (I a V) · 8 Experiencia H5P
+   9 Créditos y licencia · 10 Botones y microinteracciones · 11 Responsive y accesibilidad */
+
+/* 1. VARIABLES Y CURSORES */
+:root {
+  --negro: #0B0D0D;
+  --bosque: #14201C;
+  --magico: #78977B;
+  --oro: #B49A65;
+  --marfil: #E8E2D5;
+  --gris: #A5ADA5;
+
+  --borde-oro: 1px solid rgba(180, 154, 101, .6);
+  --borde-verde: 1px solid rgba(120, 151, 123, .5);
+  --sombra-honda: 0 30px 60px rgba(11, 13, 13, .85), 0 8px 18px rgba(11, 13, 13, .7);
+  --marco-interior: inset 0 0 0 5px rgba(11, 13, 13, .55), inset 0 0 0 6px rgba(180, 154, 101, .28);
+  --lomo: inset 18px 0 24px -16px rgba(11, 13, 13, .95);
+
+  /* textura de papel: fibras finas */
+  --papel: repeating-linear-gradient(0deg, rgba(232, 226, 213, .02) 0 1px, transparent 1px 4px),
+           repeating-linear-gradient(90deg, rgba(232, 226, 213, .012) 0 1px, transparent 1px 7px);
+  --manchas: radial-gradient(circle at 10% 14%, rgba(180, 154, 101, .08), transparent 32%),
+             radial-gradient(circle at 92% 88%, rgba(180, 154, 101, .06), transparent 34%);
+  /* cuero: trama diagonal oscura */
+  --cuero: repeating-linear-gradient(45deg, rgba(11, 13, 13, .3) 0 2px, transparent 2px 6px), linear-gradient(160deg, var(--bosque), var(--negro));
+  /* madera oscura: vetas verticales */
+  --madera: repeating-linear-gradient(90deg, rgba(0, 0, 0, .3) 0 2px, transparent 2px 11px),
+            repeating-linear-gradient(90deg, rgba(180, 154, 101, .05) 0 1px, transparent 1px 23px),
+            linear-gradient(160deg, var(--bosque), var(--negro));
+
+  --esquinas:
+    linear-gradient(var(--oro), var(--oro)) left top / 22px 1px no-repeat,
+    linear-gradient(var(--oro), var(--oro)) left top / 1px 22px no-repeat,
+    linear-gradient(var(--oro), var(--oro)) right top / 22px 1px no-repeat,
+    linear-gradient(var(--oro), var(--oro)) right top / 1px 22px no-repeat,
+    linear-gradient(var(--oro), var(--oro)) left bottom / 22px 1px no-repeat,
+    linear-gradient(var(--oro), var(--oro)) left bottom / 1px 22px no-repeat,
+    linear-gradient(var(--oro), var(--oro)) right bottom / 22px 1px no-repeat,
+    linear-gradient(var(--oro), var(--oro)) right bottom / 1px 22px no-repeat;
+
+  /* cursores: punta de varita (reposo) y varita con aro luminoso (acciones) */
+  --cur-varita: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath d='M5 5L27 27' stroke='%23B49A65' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M5 5L10 10' stroke='%23E8E2D5' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='4' cy='4' r='2.5' fill='%23E8E2D5'/%3E%3C/svg%3E") 4 4;
+  --cur-accion: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath d='M5 5L27 27' stroke='%23B49A65' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M5 5L10 10' stroke='%23E8E2D5' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='4' cy='4' r='6' fill='none' stroke='%2378977B' stroke-width='1.5'/%3E%3Ccircle cx='4' cy='4' r='2.5' fill='%23E8E2D5'/%3E%3C/svg%3E") 4 4;
+
+  --f-titulo: "Cinzel", "Trajan Pro", "Palatino Linotype", Palatino, Georgia, serif;
+  --f-texto: "Lora", Georgia, "Times New Roman", serif;
+}
+
+/* 2. BASE */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+body {
+  margin: 0; min-height: 100vh; overflow-x: hidden;
+  background: var(--negro); color: var(--marfil);
+  font-family: var(--f-texto); font-size: 1.125rem; line-height: 1.8;
+  cursor: var(--cur-varita), auto;
+}
+main, .cabecera { position: relative; z-index: 2; }
+h1, h2, h3 { margin: 0 0 .5em; font-family: var(--f-titulo); font-weight: 700; line-height: 1.2; }
+h1 { font-size: clamp(2.8rem, 12vw, 7rem); letter-spacing: .14em; color: var(--marfil); background: linear-gradient(180deg, var(--marfil) 35%, var(--oro)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 4px 20px rgba(180, 154, 101, .3)); }
+h2 { font-size: clamp(1.6rem, 5vw, 2.6rem); letter-spacing: .08em; }
+h3 { font-size: 1.15rem; letter-spacing: .08em; color: var(--oro); margin-top: 1.4em; }
+h3:first-child { margin-top: 0; }
+p { margin: 0 0 1em; }
+a { color: var(--oro); text-decoration: none; background: linear-gradient(var(--oro), var(--oro)) 0 100% / 0 1px no-repeat; transition: background-size .35s, color .3s; }
+a:hover { color: var(--marfil); background-size: 100% 1px; }
+a, button, label, summary { cursor: var(--cur-accion), pointer; }
+input, textarea { cursor: text; }
+::selection { background: rgba(120, 151, 123, .45); color: var(--marfil); }
+:focus-visible { outline: 2px solid var(--marfil); outline-offset: 4px; }
+.saltar { position: absolute; left: .5rem; top: -4rem; z-index: 10; padding: .6rem 1rem; background: var(--negro); border: var(--borde-oro); }
+.saltar:focus { top: .5rem; }
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* dibujos lineales (SVG): se tiñen con currentColor */
+.ic { width: 2rem; height: 2rem; flex: none; color: var(--oro); fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.espejo { transform: scaleX(-1); }
+.sep { display: flex; align-items: center; justify-content: center; gap: .9rem; margin: 1rem auto 1.4rem; }
+.sep .ic { width: 1.1rem; height: 1.1rem; }
+.sep::before, .sep::after { content: ""; width: min(7rem, 22%); height: 1px; background: linear-gradient(90deg, transparent, var(--oro)); }
+.sep::after { transform: scaleX(-1); }
+
+/* 3. ATMÓSFERA FIJA (capas 1 y 2) */
+.atmosfera { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(circle at 82% 14%, rgba(232, 226, 213, .14), rgba(232, 226, 213, .04) 10%, transparent 26%),
+              radial-gradient(ellipse at 50% 110%, rgba(120, 151, 123, .22), transparent 55%),
+              linear-gradient(180deg, var(--negro), var(--bosque) 75%, var(--negro)); }
+.atmosfera i { position: absolute; display: block; }
+.luz { inset: 0; background: radial-gradient(ellipse at 15% 30%, rgba(180, 154, 101, .1), transparent 40%); }
+.niebla { inset: -15% -10%; filter: blur(30px); animation: deriva 50s ease-in-out infinite alternate;
+  background: radial-gradient(ellipse at 25% 75%, rgba(165, 173, 165, .12), transparent 45%), radial-gradient(ellipse at 80% 50%, rgba(120, 151, 123, .16), transparent 50%); }
+.particulas { inset: 0; opacity: .55; animation: titilar 9s ease-in-out infinite alternate;
+  background: radial-gradient(1.5px 1.5px at 10% 20%, rgba(232, 226, 213, .9), transparent), radial-gradient(2px 2px at 27% 64%, rgba(120, 151, 123, 1), transparent),
+              radial-gradient(1px 1px at 44% 12%, rgba(232, 226, 213, .8), transparent), radial-gradient(1.5px 1.5px at 61% 46%, rgba(180, 154, 101, .9), transparent),
+              radial-gradient(1px 1px at 76% 78%, rgba(232, 226, 213, .8), transparent), radial-gradient(2px 2px at 91% 30%, rgba(120, 151, 123, 1), transparent),
+              radial-gradient(1px 1px at 18% 90%, rgba(232, 226, 213, .7), transparent), radial-gradient(1.5px 1.5px at 52% 86%, rgba(180, 154, 101, .9), transparent); }
+@keyframes deriva { from { transform: translateX(-3%); } to { transform: translateX(3%); } }
+@keyframes titilar { from { opacity: .3; } to { opacity: .65; } }
+@keyframes giro { to { transform: rotate(360deg); } }
+@keyframes baja { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+@keyframes respira { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+
+/* 4. CABECERA (cuero oscuro) */
+.cabecera { position: sticky; top: 0; z-index: 5; background: var(--cuero); border-bottom: var(--borde-oro); box-shadow: 0 6px 20px rgba(11, 13, 13, .6); }
+.menu { display: flex; flex-wrap: wrap; justify-content: center; gap: .2rem 1.6rem; padding: .7rem 1rem; }
+.menu a { position: relative; padding: .2rem .1rem; font-family: var(--f-titulo); font-size: .85rem; letter-spacing: .14em; color: var(--gris); }
+.menu a::before { content: ""; position: absolute; left: -.8rem; top: 50%; width: .35rem; height: .35rem; background: var(--oro); transform: translateY(-50%) rotate(45deg) scale(0); transition: transform .3s; }
+.menu a:hover::before, .menu a:focus-visible::before { transform: translateY(-50%) rotate(45deg) scale(1); }
+
+/* 5. PORTADA */
+.hero { position: relative; display: grid; place-items: center; min-height: calc(100vh - 3rem); padding: 3rem 1rem; overflow: hidden; text-align: center; }
+.circulo-hero { position: absolute; left: calc(50% - min(60vw, 30rem)); top: calc(50% - min(60vw, 30rem)); width: min(120vw, 60rem); height: min(120vw, 60rem); opacity: .16; stroke-width: .35; animation: giro 240s linear infinite; }
+.orn { position: absolute; opacity: .45; }
+.o-luna { top: 7%; right: 8%; width: clamp(4rem, 11vw, 9rem); height: clamp(4rem, 11vw, 9rem); color: var(--marfil); filter: drop-shadow(0 0 18px rgba(232, 226, 213, .35)); }
+.o-estrella { top: 20%; left: 9%; width: 2.2rem; height: 2.2rem; animation: respira 6s ease-in-out infinite; }
+.o-mandragora { bottom: 8%; left: 6%; width: clamp(4rem, 9vw, 7rem); height: clamp(4rem, 9vw, 7rem); color: var(--magico); }
+.o-hoja { bottom: 14%; right: 7%; width: clamp(3rem, 7vw, 5.5rem); height: clamp(3rem, 7vw, 5.5rem); color: var(--magico); transform: rotate(18deg); }
+.hero-marco { position: relative; z-index: 1; isolation: isolate; width: min(100%, 52rem); padding: clamp(2rem, 7vw, 4.5rem) clamp(1.2rem, 5vw, 3.5rem);
+  background: var(--manchas), var(--papel), linear-gradient(160deg, rgba(20, 32, 28, .8), rgba(11, 13, 13, .76));
+  border: var(--borde-oro); outline: 1px solid rgba(180, 154, 101, .26); outline-offset: -14px;
+  box-shadow: var(--sombra-honda), var(--marco-interior), var(--lomo), 0 0 60px rgba(120, 151, 123, .14);
+  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+.hero-marco::before { content: ""; position: absolute; inset: 0; z-index: -1; transform: translate(16px, 16px); background: linear-gradient(145deg, rgba(20, 32, 28, .7), rgba(11, 13, 13, .5)); border: var(--borde-verde); }
+.hero-marco::after { content: ""; position: absolute; inset: -8px; pointer-events: none; background: var(--esquinas); }
+.sello { display: flex; justify-content: center; gap: 1.2rem; margin-bottom: .6rem; }
+.sello .ic { width: 1.4rem; height: 1.4rem; }
+.subtitulo { margin: .2rem 0 0; font-family: var(--f-titulo); font-size: clamp(1rem, 3.2vw, 1.5rem); letter-spacing: .3em; color: var(--oro); }
+.frase { max-width: 32rem; margin: 0 auto 1.6rem; color: var(--gris); font-style: italic; }
+
+/* 6. BLOQUES Y MANUSCRITOS (capa principal: páginas con textura, doble marco y lomo) */
+.bloque { width: min(100%, 60rem); margin: 0 auto; padding: clamp(2.5rem, 8vw, 5rem) 1rem; text-align: center; }
+.universo { width: min(100%, 52rem); }
+.manuscrito { --panel-a: rgba(20, 32, 28, .86); --panel-b: rgba(11, 13, 13, .82); --extra: linear-gradient(transparent, transparent);
+  position: relative; isolation: isolate; max-width: 44rem; margin: 0 auto; padding: clamp(1.5rem, 5vw, 2.8rem); text-align: left;
+  background: var(--extra), var(--manchas), var(--papel), linear-gradient(150deg, var(--panel-a), var(--panel-b));
+  border: var(--borde-oro); outline: 1px solid rgba(180, 154, 101, .26); outline-offset: -13px;
+  box-shadow: var(--sombra-honda), var(--marco-interior), var(--lomo);
+  -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px);
+  transition: transform .5s ease, box-shadow .5s ease; }
+.manuscrito::before { content: ""; position: absolute; inset: 0; z-index: -1; transform: translate(12px, 12px) rotate(.4deg); background: linear-gradient(145deg, rgba(120, 151, 123, .14), rgba(11, 13, 13, .6)); border: var(--borde-verde); }
+.manuscrito::after { content: ""; position: absolute; inset: -7px; pointer-events: none; background: var(--esquinas); }
+.manuscrito:hover { transform: translateY(-3px); box-shadow: var(--sombra-honda), var(--marco-interior), var(--lomo), 0 0 36px rgba(120, 151, 123, .2); }
+.universo .manuscrito > p:first-of-type::first-letter { font-family: var(--f-titulo); font-weight: 700; font-size: 1.5em; color: var(--oro); }
+.marg { position: absolute; opacity: .5; width: 2.6rem; height: 2.6rem; }
+.m1 { top: -1.3rem; right: 2rem; background: var(--negro); border-radius: 50%; padding: .3rem; border: var(--borde-oro); color: var(--magico); }
+.m2 { bottom: -1.3rem; left: 2rem; background: var(--negro); border-radius: 50%; padding: .5rem; border: var(--borde-oro); animation: respira 6s ease-in-out infinite; }
+.recorrido { padding-bottom: 0; }
+
+/* 7. ETAPAS NARRATIVAS: cada una con su ambientación, texturas y símbolos */
+.etapa { position: relative; isolation: isolate; overflow: hidden; padding: clamp(3rem, 8vw, 6rem) 1rem 0;
+  box-shadow: inset 0 60px 70px -40px rgba(11, 13, 13, .9), inset 0 -60px 70px -40px rgba(11, 13, 13, .9); }
+.etapa::before, .etapa::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.etapa-grid { width: min(100%, 62rem); margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 2.4rem; align-items: center; }
+.etapa h2 { text-align: left; font-size: clamp(1.5rem, 4.5vw, 2.3rem); }
+.etiqueta { margin: 0 0 .3rem; color: var(--oro); font-family: var(--f-titulo); font-size: .85rem; letter-spacing: .3em; }
+.lamina { position: relative; display: grid; place-items: center; width: min(100%, 18rem); aspect-ratio: 1; margin: 0 auto; }
+.lamina .gran { width: 50%; height: 50%; stroke-width: 1; filter: drop-shadow(0 0 14px rgba(180, 154, 101, .35)); }
+.lamina .anillo { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .4; stroke-width: .5; animation: giro 140s linear infinite; }
+.conector { position: relative; display: flex; justify-content: center; padding: 2rem 0 1.4rem; }
+.conector::before { content: ""; position: absolute; top: 0; left: 50%; height: 2rem; width: 1px; background: linear-gradient(transparent, var(--oro)); }
+.conector .ic { transform: rotate(90deg); animation: baja 3.5s ease-in-out infinite; }
+
+/* Etapa I – El descubrimiento: negro y verde, niebla baja, troncos en sombra, luces verdes */
+.e1 { background: linear-gradient(180deg, rgba(11, 13, 13, .6), rgba(20, 32, 28, .88)); }
+.e1::before { filter: blur(24px); animation: deriva 40s ease-in-out infinite alternate;
+  background: radial-gradient(ellipse at 30% 90%, rgba(165, 173, 165, .16), transparent 55%), radial-gradient(ellipse at 80% 70%, rgba(120, 151, 123, .16), transparent 50%); }
+.e1::after { background: repeating-linear-gradient(90deg, rgba(11, 13, 13, .9) 0 .5rem, transparent .5rem 5rem), repeating-linear-gradient(90deg, rgba(11, 13, 13, .6) 0 1.8rem, transparent 1.8rem 14rem);
+  -webkit-mask-image: linear-gradient(to top, #000, transparent 60%); mask-image: linear-gradient(to top, #000, transparent 60%); }
+.e1 .manuscrito { --panel-a: rgba(14, 24, 20, .9); --panel-b: rgba(11, 13, 13, .94);
+  --extra: repeating-linear-gradient(0deg, rgba(0, 0, 0, .2) 0 1px, transparent 1px 3rem), repeating-linear-gradient(90deg, rgba(0, 0, 0, .16) 0 1px, transparent 1px 5rem); }
+.e1 .gran { color: var(--magico); }
+
+/* Etapa II – El conocimiento: biblioteca antigua, luz cálida, estantes */
+.e2 { background: radial-gradient(circle at 12% 30%, rgba(180, 154, 101, .24), transparent 42%), radial-gradient(circle at 88% 75%, rgba(180, 154, 101, .12), transparent 42%), linear-gradient(180deg, rgba(20, 32, 28, .88), rgba(11, 13, 13, .72)); }
+.e2::after { opacity: .5; background: repeating-linear-gradient(0deg, rgba(180, 154, 101, .14) 0 2px, transparent 2px 7rem), repeating-linear-gradient(90deg, rgba(11, 13, 13, .4) 0 .7rem, rgba(180, 154, 101, .06) .7rem 1.4rem, transparent 1.4rem 2.7rem);
+  -webkit-mask-image: radial-gradient(ellipse at center, transparent 30%, #000); mask-image: radial-gradient(ellipse at center, transparent 30%, #000); }
+.e2 .manuscrito { --extra: radial-gradient(circle at 20% 12%, rgba(232, 226, 213, .1), transparent 42%), linear-gradient(rgba(180, 154, 101, .12), rgba(180, 154, 101, .03)); }
+
+/* Etapa III – El ritual: círculo ritual giratorio, ingredientes, marcos más ornamentados */
+.e3 { background: radial-gradient(circle at 50% 45%, rgba(120, 151, 123, .22), transparent 55%), linear-gradient(180deg, rgba(11, 13, 13, .72), rgba(20, 32, 28, .92)); }
+.ritual-giro { position: absolute; z-index: -1; left: calc(50% - min(55vw, 26rem)); top: calc(50% - min(55vw, 26rem)); width: min(110vw, 52rem); height: min(110vw, 52rem); opacity: .2; stroke-width: .4; animation: giro 180s linear infinite reverse; }
+.ingredientes { grid-template-columns: 1fr 1fr; gap: 1.2rem; place-items: center; width: min(100%, 15rem); aspect-ratio: auto; padding: 1.4rem; border: var(--borde-oro); outline: 1px solid rgba(180, 154, 101, .3); outline-offset: 6px; background: rgba(11, 13, 13, .5); }
+.ingredientes .ic { width: 3.6rem; height: 3.6rem; stroke-width: 1.2; }
+.ingredientes .ic:nth-child(odd) { color: var(--magico); }
+.e3 .manuscrito { outline: 1px solid rgba(180, 154, 101, .5); outline-offset: 7px; border-style: double; border-width: 4px; }
+
+/* Etapa IV – La tormenta: contraste de luz, destello lento y relámpago luminoso */
+.e4 { background: radial-gradient(ellipse at 50% 0%, rgba(232, 226, 213, .16), transparent 55%), linear-gradient(180deg, #070809, rgba(14, 20, 22, .96) 60%, rgba(11, 13, 13, .92)); }
+.e4::before { opacity: 0; animation: destello 12s ease-out infinite; background: radial-gradient(ellipse at 70% 0%, rgba(232, 226, 213, .35), transparent 55%); }
+.e4::after { background: repeating-linear-gradient(100deg, rgba(165, 173, 165, .05) 0 1px, transparent 1px 18px); }
+@keyframes destello { 0%, 88% { opacity: 0; } 90% { opacity: .55; } 95% { opacity: .15; } 100% { opacity: 0; } }
+.e4 .rayo { color: var(--marfil); stroke-width: 1.2; filter: drop-shadow(0 0 12px rgba(232, 226, 213, .55)); animation: respira 5s ease-in-out infinite; }
+.e4 .manuscrito { --panel-a: rgba(11, 15, 18, .92); --panel-b: rgba(11, 13, 13, .94); border-color: rgba(232, 226, 213, .5);
+  --extra: linear-gradient(180deg, rgba(232, 226, 213, .08), transparent 35%); }
+
+/* Etapa V – El nacimiento: luz, verde y dorado, vegetación y animal */
+.e5 { background: radial-gradient(ellipse at 50% 100%, rgba(120, 151, 123, .42), transparent 60%), radial-gradient(circle at 50% 0%, rgba(180, 154, 101, .24), transparent 52%), linear-gradient(180deg, rgba(20, 32, 28, .82), rgba(20, 32, 28, .95)); }
+.e5::after { background: repeating-linear-gradient(80deg, rgba(120, 151, 123, .28) 0 2px, transparent 2px 15px), repeating-linear-gradient(100deg, rgba(120, 151, 123, .18) 0 2px, transparent 2px 23px);
+  -webkit-mask-image: linear-gradient(to top, #000, transparent 38%); mask-image: linear-gradient(to top, #000, transparent 38%); }
+.e5 .gran { color: var(--marfil); }
+.rama { position: absolute; bottom: 4%; width: 22%; height: 22%; color: var(--magico); opacity: .8; }
+.r1 { left: 4%; }
+.r2 { right: 4%; transform: scaleX(-1); }
+.e5 .manuscrito { --panel-b: rgba(20, 32, 28, .84); border-color: rgba(120, 151, 123, .7);
+  --extra: radial-gradient(circle at 50% 0%, rgba(180, 154, 101, .16), transparent 60%), linear-gradient(0deg, rgba(120, 151, 123, .16), transparent 45%); }
+.e5 { padding-bottom: 4.5rem; }
+
+/* 8. EXPERIENCIA H5P (marco de madera oscura, sin interferir con H5P) */
+.experiencia { width: min(100%, 70rem); }
+.indicacion { max-width: 38rem; margin: 0 auto 1rem; color: var(--gris); font-style: italic; }
+.indica { display: flex; justify-content: center; margin-bottom: 1.2rem; }
+.indica .ic { transform: rotate(90deg); animation: baja 3.5s ease-in-out infinite; }
+.escenario-h5p { position: relative; isolation: isolate; padding: clamp(.6rem, 2.5vw, 1.4rem); background: var(--madera); border: var(--borde-oro); outline: 1px solid rgba(180, 154, 101, .3); outline-offset: -8px;
+  box-shadow: var(--sombra-honda), var(--marco-interior), 0 0 70px rgba(120, 151, 123, .18); }
+.escenario-h5p::before { content: ""; position: absolute; inset: 0; z-index: -1; transform: translate(14px, 14px); background: rgba(20, 32, 28, .6); border: var(--borde-verde); }
+.escenario-h5p::after { content: ""; position: absolute; inset: -8px; pointer-events: none; background: var(--esquinas); }
+.marco-ic { position: absolute; z-index: 3; top: -1.6rem; width: 3rem; height: 3rem; padding: .55rem; background: var(--negro); border: var(--borde-oro); border-radius: 50%; pointer-events: none; }
+.mi-a { left: 2rem; }
+.mi-b { right: 2rem; color: var(--magico); }
+.h5p-contenedor { position: relative; width: 100%; max-width: 100%; overflow: hidden; background: var(--negro); border: var(--borde-verde); cursor: auto; }
+/* Estas reglas pisan los atributos width/height del código de inserción de H5P */
+.h5p-contenedor iframe { display: block; width: 100%; max-width: 100%; height: clamp(34rem, 85vh, 52rem); border: 0; }
+.h5p-pendiente { display: grid; place-items: center; min-height: clamp(20rem, 60vh, 34rem); margin: .6rem; padding: 1.5rem; text-align: center; color: var(--gris); font-family: var(--f-titulo); letter-spacing: .1em; border: 1px dashed rgba(180, 154, 101, .5); }
+
+/* 9. CRÉDITOS Y LICENCIA */
+.creditos { max-width: 50rem; }
+.integrantes { margin: 0; padding: 0; list-style: none; }
+.integrantes li { padding: .5rem 0; font-family: var(--f-titulo); letter-spacing: .04em; border-bottom: 1px solid rgba(180, 154, 101, .2); }
+.datos { display: grid; grid-template-columns: max-content 1fr; gap: .5rem 1.5rem; margin: 0; }
+.datos dt { color: var(--oro); font-family: var(--f-titulo); font-size: .9rem; letter-spacing: .08em; }
+.datos dd { margin: 0; }
+.datos dd.espacio { min-height: 1.8rem; border-bottom: 1px dotted rgba(180, 154, 101, .5); }
+.creditos .sep { margin: 1.6rem auto; }
+.fin { display: block; width: 2.6rem; height: 2.6rem; margin: 2rem auto 0; opacity: .6; }
+#licencia { padding-bottom: 6rem; }
+#licencia .manuscrito, #creditos .manuscrito { max-width: 50rem; }
+
+/* 10. BOTONES Y MICROINTERACCIONES (reposo, hover, foco, activo) */
+.btn { position: relative; display: inline-block; overflow: hidden; padding: .85em 2em; font-family: var(--f-titulo); font-size: .95rem; letter-spacing: .14em; color: var(--marfil);
+  background: linear-gradient(145deg, rgba(20, 32, 28, .95), rgba(11, 13, 13, .95)); border: var(--borde-oro); border-radius: 2px;
+  box-shadow: inset 0 0 0 3px rgba(11, 13, 13, .7), inset 0 0 0 4px rgba(120, 151, 123, .3), 0 8px 20px rgba(11, 13, 13, .7);
+  transition: background .4s, box-shadow .4s, border-color .4s, transform .2s; background-image: linear-gradient(145deg, rgba(20, 32, 28, .95), rgba(11, 13, 13, .95)); background-size: auto; }
+.btn::before { content: ""; display: inline-block; width: .45rem; height: .45rem; margin-right: .9rem; background: var(--oro); transform: rotate(45deg); transition: transform .5s, background .3s, box-shadow .3s; }
+.btn::after { content: ""; position: absolute; inset: 0; transform: translateX(-120%); transition: transform .7s; background: linear-gradient(100deg, transparent 30%, rgba(232, 226, 213, .2) 50%, transparent 70%); }
+.btn .ic { width: 1.4rem; height: 1.4rem; margin-left: .7rem; vertical-align: middle; transition: transform .3s; }
+.btn:hover { color: var(--marfil); border-color: var(--magico); background-image: linear-gradient(145deg, rgba(20, 32, 28, .95), rgba(120, 151, 123, .35)); background-size: auto;
+  box-shadow: inset 0 0 0 3px rgba(11, 13, 13, .7), inset 0 0 0 4px rgba(120, 151, 123, .5), 0 0 26px rgba(120, 151, 123, .38); }
+.btn:hover::before { transform: rotate(225deg) scale(1.3); background: var(--marfil); box-shadow: 0 0 10px var(--oro); }
+.btn:hover::after { transform: translateX(120%); }
+.btn:hover .ic { transform: translateX(6px); }
+.btn:active { transform: translateY(1px); box-shadow: inset 0 3px 12px rgba(11, 13, 13, .9); }
+
+/* aparición suave al desplazarse (solo navegadores compatibles) */
+@keyframes revelar { from { opacity: 0; transform: translateY(32px); } to { opacity: 1; transform: none; } }
+@supports (animation-timeline: view()) {
+  .etapa .manuscrito, .lamina { animation: revelar linear both; animation-timeline: view(); animation-range: entry 0% cover 28%; }
+}
+
+/* 11. RESPONSIVE Y ACCESIBILIDAD */
+@media (min-width: 820px) {
+  .etapa-grid { grid-template-columns: minmax(12rem, .8fr) 1.5fr; gap: 3.5rem; }
+  .inv .etapa-grid { grid-template-columns: 1.5fr minmax(12rem, .8fr); }
+  .inv .lamina { order: 2; }
+}
+@media (max-width: 700px) {
+  body { font-size: 1.05rem; }
+  .niebla { display: none; }
+  .o-estrella, .o-hoja { display: none; }
+  .hero-marco::before, .manuscrito::before, .escenario-h5p::before { transform: translate(6px, 6px); }
+  .hero-marco::after, .manuscrito::after, .escenario-h5p::after { inset: -4px; }
+  .menu { gap: .1rem 1.1rem; }
+  .menu a { font-size: .75rem; letter-spacing: .08em; }
+  .lamina { width: min(100%, 13rem); }
+  .datos { grid-template-columns: 1fr; gap: 0; }
+  .datos dd { margin-bottom: .7rem; }
+  .h5p-contenedor iframe { height: clamp(30rem, 80vh, 44rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

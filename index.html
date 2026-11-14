@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ANIMAGO – El ritual de transformación</title>
+  <meta name="description" content="Expansión narrativa interactiva del universo de Hogwarts Legacy.">
+  <!-- Tipografías: Cinzel (títulos) y Lora (textos). El CSS incluye alternativas locales. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="saltar" href="#experiencia">Saltar a la experiencia</a>
+
+  <!-- DIBUJOS LINEALES REUTILIZABLES (SVG): se usan con <svg class="ic"><use href="#nombre"/></svg> -->
+  <svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="luna" viewBox="0 0 64 64"><path d="M44 8A24 24 0 1 0 56 44 19 19 0 0 1 44 8z"/></symbol>
+      <symbol id="estrella" viewBox="0 0 64 64"><path d="M32 4 36 28 60 32 36 36 32 60 28 36 4 32 28 28z"/></symbol>
+      <symbol id="hoja" viewBox="0 0 64 64"><path d="M32 60C10 42 12 18 32 4 52 18 54 42 32 60zM32 60V16M32 32 22 22M32 44 44 32"/></symbol>
+      <symbol id="mandragora" viewBox="0 0 64 64"><path d="M32 24C23 24 20 34 24 44 26 52 29 58 32 60 35 58 38 52 40 44 44 34 41 24 32 24zM32 24C31 15 24 10 18 6M32 24C33 15 40 10 46 6M32 24V6M29 36h2M35 36h2M30 44q2 2 4 0M28 52 22 60M36 52 42 60"/></symbol>
+      <symbol id="frasco" viewBox="0 0 64 64"><path d="M25 6h14M28 6v16L13 52c-2 6 2 8 6 8h26c4 0 8-2 6-8L36 22V6M19 44h26"/></symbol>
+      <symbol id="crisalida" viewBox="0 0 64 64"><path d="M32 4C43 11 45 30 38 44 36 52 34 58 32 60 30 58 28 52 26 44 19 30 21 11 32 4zM23 20h18M22 30h20M24 40h16"/></symbol>
+      <symbol id="relampago" viewBox="0 0 64 64"><path d="M37 4 17 35h13l-4 25 22-34H34z"/></symbol>
+      <symbol id="circulo" viewBox="0 0 200 200"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="88"/><circle cx="100" cy="100" r="72" stroke-dasharray="2 7"/><circle cx="100" cy="100" r="56"/><path d="M100 44 148 128H52zM100 156 52 72H148z"/></symbol>
+      <symbol id="flecha" viewBox="0 0 64 64"><path d="M4 32h50M44 22l12 10-12 10M10 26v12"/></symbol>
+      <symbol id="ciervo" viewBox="0 0 64 64"><path d="M32 58 24 42V32c0-8 16-8 16 0v10zM25 30 15 14 8 16M15 14l2-9M39 30l10-16 7 2M49 14l-2-9M28 38h.1M36 38h.1"/></symbol>
+      <symbol id="jaula" viewBox="0 0 64 64"><path d="M10 16h44v38H10zM10 16 32 5l22 11M20 16v38M32 16v38M44 16v38"/><circle cx="26" cy="36" r="1.5"/><circle cx="38" cy="36" r="1.5"/></symbol>
+      <symbol id="libro" viewBox="0 0 64 64"><path d="M32 14C24 8 12 8 6 12v38c6-4 18-4 26 2 8-6 20-6 26-2V12c-6-4-18-4-26 2zM32 14v38"/></symbol>
+      <symbol id="rama" viewBox="0 0 64 64"><path d="M8 58C22 42 20 24 34 6M21 40C12 38 9 31 11 24M27 28C36 28 40 21 40 14M24 46C32 46 38 42 42 36"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- CAPAS 1 y 2: fondo y atmósfera fijos (decorativos) -->
+  <div class="atmosfera" aria-hidden="true">
+    <i class="luz"></i><i class="niebla"></i><i class="particulas"></i>
+  </div>
+
+  <!-- NAVEGACIÓN -->
+  <header class="cabecera">
+    <nav class="menu" aria-label="Secciones de la página">
+      <a href="#inicio">Inicio</a>
+      <a href="#universo">Introducción</a>
+      <a href="#recorrido">Recorrido</a>
+      <a href="#experiencia">Experiencia</a>
+      <a href="#creditos">Créditos</a>
+      <a href="#licencia">Licencia</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- A. PORTADA PRINCIPAL -->
+    <section class="hero" id="inicio" aria-labelledby="t-hero">
+      <svg class="ic circulo-hero" aria-hidden="true"><use href="#circulo"/></svg>
+      <svg class="ic orn o-luna" aria-hidden="true"><use href="#luna"/></svg>
+      <svg class="ic orn o-estrella" aria-hidden="true"><use href="#estrella"/></svg>
+      <svg class="ic orn o-mandragora" aria-hidden="true"><use href="#mandragora"/></svg>
+      <svg class="ic orn o-hoja" aria-hidden="true"><use href="#hoja"/></svg>
+      <div class="hero-marco">
+        <div class="sello" aria-hidden="true">
+          <svg class="ic"><use href="#luna"/></svg><svg class="ic"><use href="#estrella"/></svg><svg class="ic espejo"><use href="#luna"/></svg>
+        </div>
+        <h1 id="t-hero">ANIMAGO</h1>
+        <p class="subtitulo">El ritual de transformación</p>
+        <div class="sep" aria-hidden="true"><svg class="ic"><use href="#estrella"/></svg></div>
+        <p class="frase">Entre las páginas más antiguas del mundo mágico se esconde un secreto: el de la transformación.</p>
+        <p><a class="btn" href="#experiencia">Comenzar el ritual<svg class="ic" aria-hidden="true"><use href="#flecha"/></svg></a></p>
+      </div>
+    </section>
+
+    <!-- B. INTRODUCCIÓN NARRATIVA -->
+    <section class="bloque universo" id="universo" aria-labelledby="t-universo">
+      <h2 id="t-universo">El secreto de los Furtivos</h2>
+      <div class="sep" aria-hidden="true"><svg class="ic"><use href="#estrella"/></svg></div>
+      <article class="manuscrito">
+        <svg class="ic marg m1" aria-hidden="true"><use href="#hoja"/></svg>
+        <svg class="ic marg m2" aria-hidden="true"><use href="#estrella"/></svg>
+        <p>Eres un estudiante de Hogwarts y acabas de descubrir algo que no puedes ignorar: los Furtivos capturan, maltratan y comercializan criaturas mágicas.</p>
+        <p>Nadie más parece dispuesto a detenerlos. Por eso decides convertirte en Animago: transformarte para infiltrarte en uno de sus campamentos y liberar a los animales.</p>
+        <p>Para conseguirlo deberás atravesar el ritual de transformación: respetar sus instrucciones, reunir los ingredientes necesarios y esperar el momento adecuado.</p>
+      </article>
+    </section>
+
+    <!-- RECORRIDO: cinco etapas, cada una con su ambientación visual -->
+    <section class="bloque recorrido" id="recorrido" aria-labelledby="t-rec">
+      <h2 id="t-rec">El recorrido del ritual</h2>
+      <div class="sep" aria-hidden="true"><svg class="ic"><use href="#estrella"/></svg></div>
+      <div class="conector" aria-hidden="true"><svg class="ic"><use href="#flecha"/></svg></div>
+    </section>
+
+    <!-- ETAPA 1: EL DESCUBRIMIENTO (negro y verde, niebla, sombras, criaturas cautivas) -->
+    <section class="etapa e1" id="etapa-1" aria-labelledby="t-e1">
+      <div class="etapa-grid">
+        <figure class="lamina" aria-hidden="true">
+          <svg class="ic anillo"><use href="#circulo"/></svg>
+          <svg class="ic gran"><use href="#jaula"/></svg>
+        </figure>
+        <article class="manuscrito">
+          <p class="etiqueta">Etapa I</p>
+          <h2 id="t-e1">El descubrimiento</h2>
+          <p>En el bosque, entre la niebla, un estudiante de Hogwarts descubre un campamento oculto: los Furtivos capturan, maltratan y comercializan criaturas mágicas. El secreto se vuelve imposible de ignorar.</p>
+        </article>
+      </div>
+      <div class="conector" aria-hidden="true"><svg class="ic"><use href="#flecha"/></svg></div>
+    </section>
+
+    <!-- ETAPA 2: EL CONOCIMIENTO DE LOS ANIMAGOS (biblioteca antigua, luz cálida) -->
+    <section class="etapa e2 inv" id="etapa-2" aria-labelledby="t-e2">
+      <div class="etapa-grid">
+        <figure class="lamina" aria-hidden="true">
+          <svg class="ic anillo"><use href="#circulo"/></svg>
+          <svg class="ic gran"><use href="#libro"/></svg>
+        </figure>
+        <article class="manuscrito">
+          <p class="etiqueta">Etapa II</p>
+          <h2 id="t-e2">El conocimiento de los Animagos</h2>
+          <p>Frente a lo que presencia, surge una posibilidad: convertirse en Animago. Transformarse permitiría infiltrarse en un campamento sin ser descubierto. Pero el ritual es antiguo, complejo y exige paciencia, conocimiento y determinación.</p>
+        </article>
+      </div>
+      <div class="conector" aria-hidden="true"><svg class="ic"><use href="#flecha"/></svg></div>
+    </section>
+
+    <!-- ETAPA 3: EL RITUAL DE TRANSFORMACIÓN (círculo ritual, ingredientes, marcos ornamentados) -->
+    <section class="etapa e3" id="etapa-3" aria-labelledby="t-e3">
+      <svg class="ic ritual-giro" aria-hidden="true"><use href="#circulo"/></svg>
+      <div class="etapa-grid">
+        <figure class="lamina ingredientes" aria-hidden="true">
+          <svg class="ic"><use href="#mandragora"/></svg>
+          <svg class="ic"><use href="#hoja"/></svg>
+          <svg class="ic"><use href="#frasco"/></svg>
+          <svg class="ic"><use href="#crisalida"/></svg>
+        </figure>
+        <article class="manuscrito">
+          <p class="etiqueta">Etapa III</p>
+          <h2 id="t-e3">El ritual de transformación</h2>
+          <p>Para conseguirlo deberá respetar las instrucciones del ritual, reunir los ingredientes necesarios y esperar el momento adecuado. Cada paso exige concentración y atención.</p>
+        </article>
+      </div>
+      <div class="conector" aria-hidden="true"><svg class="ic"><use href="#flecha"/></svg></div>
+    </section>
+
+    <!-- ETAPA 4: LA TORMENTA Y LA TRANSFORMACIÓN (relámpagos, contrastes de luz) -->
+    <section class="etapa e4 inv" id="etapa-4" aria-labelledby="t-e4">
+      <div class="etapa-grid">
+        <figure class="lamina" aria-hidden="true">
+          <svg class="ic anillo"><use href="#circulo"/></svg>
+          <svg class="ic gran rayo"><use href="#relampago"/></svg>
+        </figure>
+        <article class="manuscrito">
+          <p class="etiqueta">Etapa IV</p>
+          <h2 id="t-e4">La tormenta y la transformación</h2>
+          <p>Llega el momento culminante. Entre relámpagos y destellos, el ritual alcanza su punto de mayor tensión: la transformación está por producirse.</p>
+        </article>
+      </div>
+      <div class="conector" aria-hidden="true"><svg class="ic"><use href="#flecha"/></svg></div>
+    </section>
+
+    <!-- ETAPA 5: EL NACIMIENTO DE UN ANIMAGO Y LA NUEVA MISIÓN (luz, verde y dorado, vegetación) -->
+    <section class="etapa e5" id="etapa-5" aria-labelledby="t-e5">
+      <div class="etapa-grid">
+        <figure class="lamina" aria-hidden="true">
+          <svg class="ic anillo"><use href="#circulo"/></svg>
+          <svg class="ic gran"><use href="#ciervo"/></svg>
+          <svg class="ic rama r1"><use href="#rama"/></svg>
+          <svg class="ic rama r2"><use href="#rama"/></svg>
+        </figure>
+        <article class="manuscrito">
+          <p class="etiqueta">Etapa V</p>
+          <h2 id="t-e5">El nacimiento de un Animago y la nueva misión</h2>
+          <p>El ritual se completa y nace un Animago. Comienza una nueva misión: liberar a las criaturas mágicas cautivas y seguir ayudando a otras.</p>
+          <p><a class="btn" href="#experiencia">Entrar al ritual<svg class="ic" aria-hidden="true"><use href="#flecha"/></svg></a></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- C. EXPERIENCIA INTERACTIVA – BRANCHING SCENARIO (H5P) -->
+    <section class="bloque experiencia" id="experiencia" aria-labelledby="t-exp">
+      <h2 id="t-exp">Atraviesa el ritual</h2>
+      <div class="sep" aria-hidden="true"><svg class="ic"><use href="#estrella"/></svg></div>
+      <p class="indicacion">Acompaña al estudiante, toma tus decisiones y presta atención a las instrucciones del ritual: cada elección tiene consecuencias.</p>
+      <div class="indica" aria-hidden="true"><svg class="ic"><use href="#flecha"/></svg></div>
+
+      <div class="escenario-h5p">
+        <svg class="ic marco-ic mi-a" aria-hidden="true"><use href="#luna"/></svg>
+        <svg class="ic marco-ic mi-b" aria-hidden="true"><use href="#estrella"/></svg>
+        <!--
+          ===== EXPERIENCIA INTERACTIVA (H5P.com) =====
+          Código oficial de inserción de H5P.com, sin modificar.
+          Se omite la línea del script h5p-resizer.js que acompaña al iframe, porque este proyecto no usa JavaScript.
+          El CSS (.h5p-contenedor iframe) fija el ancho al 100% y una altura cómoda.
+        -->
+        <div class="h5p-contenedor" id="h5p-contenedor">
+          <iframe src="https://tpfinalnarrativashowartslegacy.h5p.com/content/1293059068201624328/embed" aria-label="ANIMAGO – El ritual de transformación" width="1088" height="637" frameborder="0" allowfullscreen="allowfullscreen" allow="autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- D. CRÉDITOS (páginas finales del libro) -->
+    <section class="bloque" id="creditos" aria-labelledby="t-cred">
+      <h2 id="t-cred">Créditos</h2>
+      <div class="sep" aria-hidden="true"><svg class="ic"><use href="#estrella"/></svg></div>
+      <article class="manuscrito creditos">
+        <h3>Integrantes</h3>
+        <ul class="integrantes">
+          <li>Accastello Valentina</li>
+          <li>Da Silvera Yolanda Yaquelin</li>
+          <li>Ferreyra, Josephine Annette</li>
+          <li>Fessia Nardelis, María Josefina</li>
+          <li>Gutierrez Berroteran Patricia Andrea</li>
+          <li>Juarez Vizueta, Chabela</li>
+        </ul>
+        <div class="sep" aria-hidden="true"><svg class="ic"><use href="#estrella"/></svg></div>
+        <h3>Datos institucionales</h3>
+        <dl class="datos">
+          <dt>Proyecto</dt><dd>ANIMAGO – El ritual de transformación</dd>
+          <dt>Institución</dt><dd>Universidad Nacional de Villa María</dd>
+          <dt>Carrera</dt><dd>Diseño y Producción Audiovisual</dd>
+          <dt>Asignatura</dt><dd>Narrativas Audiovisuales Interactivas</dd>
+          <dt>Docentes</dt><dd>Lila Pagola y Luján Ailen Martinez</dd>
+          <dt>Año</dt><dd>2026</dd>
+        </dl>
+        <svg class="ic fin" aria-hidden="true"><use href="#luna"/></svg>
+      </article>
+    </section>
+
+    <!-- E. LICENCIA: espacio estructural; completar con la licencia elegida por el grupo -->
+    <section class="bloque" id="licencia" aria-labelledby="t-lic">
+      <h2 id="t-lic">Licencia</h2>
+      <div class="sep" aria-hidden="true"><svg class="ic"><use href="#estrella"/></svg></div>
+      <article class="manuscrito">
+        <dl class="datos">
+          <dt>Licencia Creative Commons</dt><dd class="espacio"><!-- Escribir aquí el tipo de licencia elegido --></dd>
+          <dt>Enlace oficial</dt><dd class="espacio"><!-- Agregar aquí el enlace oficial de la licencia --></dd>
+        </dl>
+      </article>
+    </section>
+
+  </main>
+</body>
+</html>
